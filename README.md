@@ -50,4 +50,6 @@ GitHub: [angelrmacedo1](https://github.com/angelrmacedo1)
 ---
 
 ## Demo
-Coming soon: a hosted version via Streamlit Cloud so the app can be viewed directly in a browser without setup.
+Try the live app here: [Investor Insights Dashboard](https://investor-dashboard-4nlzjfkbdvuluefodmdpv6.streamlit.app/)
+
+No installation required — just open the link and start exploring.
