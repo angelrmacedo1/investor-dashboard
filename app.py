@@ -29,13 +29,13 @@ def get_stock_data(ticker):
     stock = yf.Ticker(ticker)
     hist = stock.history(period="6mo")
     info = stock.info
-    return stock, hist, info
+    return hist, info
 
 # ----------------------
 # MAIN DISPLAY
 # ----------------------
 if ticker_input:
-    stock, hist, info = get_stock_data(ticker_input)
+    hist, info = get_stock_data(ticker_input)
 
     col1, col2 = st.columns(2)
 
