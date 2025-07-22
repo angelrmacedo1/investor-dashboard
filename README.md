@@ -37,14 +37,15 @@ It's a quick way to assess a company's recent performance and overall risk/retur
 
 ```bash
 pip install -r requirements.txt
-streamlit run app.py ```
+streamlit run app.py
+```
 
 ---
 
-## About the Creator
-Created by Angel Macedo
-Aspiring data analyst with an interest in finance, analytics, and building clean, usable tools.
-GitHub: angelrmacedo1
+## About the creator
+Created by **Angel Macedo**  
+Aspiring data analyst with an interest in finance, analytics, and building clean, usable tools.  
+GitHub: [angelrmacedo1](https://github.com/angelrmacedo1)
 
 ---
 
