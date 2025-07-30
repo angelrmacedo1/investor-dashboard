@@ -3,7 +3,9 @@ import yfinance as yf
 import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
-from yfinance import YFRateLimitError
+
+# Safely access YFRateLimitError
+YFRateLimitError = yf.utils.YFRateLimitError
 
 # ----------------------
 # PAGE CONFIG
@@ -27,7 +29,7 @@ ticker_input = st.text_input("Enter a stock ticker (e.g. AAPL, TSLA, MSFT)", "AA
 # ----------------------
 # FETCH DATA WITH CACHING + ERROR HANDLING
 # ----------------------
-@st.cache_data(ttl=3600)  # Cache results for 1 hour
+@st.cache_data(ttl=3600)  # Cache for 1 hour
 def get_stock_data(ticker):
     stock = yf.Ticker(ticker)
     hist = stock.history(period="6mo")
@@ -80,6 +82,7 @@ if ticker_input:
         if ticker_input == "AAPL":
             st.info("Apple Inc. (AAPL) is known for its consistent performance, high market cap, and strong brand moat—great as a benchmark stock.")
 
+        # Footer
         st.markdown("---")
         st.markdown("Created by Angel Macedo using Streamlit + Yahoo Finance | For educational and professional demo use")
 
