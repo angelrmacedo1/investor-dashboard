@@ -4,9 +4,6 @@ import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
 
-# Safely access YFRateLimitError
-YFRateLimitError = yf.utils.YFRateLimitError
-
 # ----------------------
 # PAGE CONFIG
 # ----------------------
@@ -27,9 +24,9 @@ st.markdown(
 ticker_input = st.text_input("Enter a stock ticker (e.g. AAPL, TSLA, MSFT)", "AAPL").upper()
 
 # ----------------------
-# FETCH DATA WITH CACHING + ERROR HANDLING
+# FETCH DATA WITH CACHING
 # ----------------------
-@st.cache_data(ttl=3600)  # Cache for 1 hour
+@st.cache_data(ttl=3600)  # Cache data for 1 hour
 def get_stock_data(ticker):
     stock = yf.Ticker(ticker)
     hist = stock.history(period="6mo")
@@ -86,9 +83,10 @@ if ticker_input:
         st.markdown("---")
         st.markdown("Created by Angel Macedo using Streamlit + Yahoo Finance | For educational and professional demo use")
 
-    except YFRateLimitError:
-        st.error("⚠️ Too many requests to Yahoo Finance. Please wait a few minutes and try again.")
-        st.stop()
     except Exception as e:
-        st.error(f"An unexpected error occurred: {e}")
+        error_str = str(e).lower()
+        if "rate" in error_str and "limit" in error_str:
+            st.error("⚠️ Too many requests to Yahoo Finance. Please wait a few minutes and try again.")
+        else:
+            st.error(f"An unexpected error occurred: {e}")
         st.stop()
