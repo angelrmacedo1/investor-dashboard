@@ -2,9 +2,7 @@ import streamlit as st
 # ----------------------
 # KEEP-ALIVE FAST ROUTE
 # ----------------------
-get_qp = getattr(st, "query_params", None)
-qp = get_qp if isinstance(get_qp, dict) else st.experimental_get_query_params()
-
+qp = st.query_params  # modern API
 if "ping" in qp:
     st.write("ok")
     st.stop()
